@@ -1,9 +1,16 @@
 "use client"
 
-import { comparisonData } from "@/data/comparison"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts"
 
-export function ComparisonOverviewChart() {
+export function ComparisonOverviewChart({ data }: { data: any }) {
+  if (!data || !data.overview || data.overview.length === 0) {
+    return (
+      <div className="bg-white dark:bg-neutral-900 p-6 rounded-2xl border border-gray-100 dark:border-neutral-800 shadow-sm mb-8">
+        <h3 className="text-lg font-bold text-gray-900 dark:text-white">Platform Comparison Overview</h3>
+        <p className="text-gray-500 dark:text-gray-400 mt-4">No comparison data available. Analyze a product to see this chart.</p>
+      </div>
+    );
+  }
   return (
     <div className="bg-white dark:bg-neutral-900 p-6 rounded-2xl border border-gray-100 dark:border-neutral-800 shadow-sm mb-8">
       <div className="mb-6">
@@ -12,7 +19,7 @@ export function ComparisonOverviewChart() {
       <div className="h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
-            data={comparisonData.overview}
+            data={data.overview}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" className="dark:stroke-neutral-800" />
@@ -40,7 +47,7 @@ export function ComparisonOverviewChart() {
               itemStyle={{ fontSize: '12px', fontWeight: 500 }}
             />
             <Bar dataKey="sentiment" radius={[8, 8, 0, 0]} barSize={60}>
-              {comparisonData.overview.map((entry, index) => (
+              {data.overview.map((entry: any, index: number) => (
                 <Cell key={`cell-${index}`} fill={entry.fill} />
               ))}
             </Bar>

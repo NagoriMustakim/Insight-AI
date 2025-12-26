@@ -1,10 +1,10 @@
 "use client"
 
-import { overviewData } from "@/data/overview"
 import { TrendingUp, Star, AlertCircle, MessageSquare } from "lucide-react"
 
-export function StatsCards() {
-  const { healthScore, totalReviews, avgRating, criticalIssues } = overviewData
+export function StatsCards({ data }: { data: any }) {
+  if (!data || Object.keys(data).length === 0) return null;
+  const { healthScore, totalReviews, avgRating, criticalIssues } = data;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

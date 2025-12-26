@@ -1,17 +1,18 @@
 "use client"
 
-import { comparisonData } from "@/data/comparison"
 
-export function IssueBreakdown() {
+export function IssueBreakdown({ data }: { data: any }) {
+  if (!data || !data.issues || Object.keys(data.issues).length === 0) return null;
+  const { issues } = data;
   return (
     <div className="mb-8">
       <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Platform-Specific Issue Breakdown</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {Object.entries(comparisonData.issues).map(([platform, issues]) => (
+        {Object.entries(issues).map(([platform, platformIssues]: [string, any]) => (
           <div key={platform} className="bg-white dark:bg-neutral-900 p-6 rounded-2xl border border-gray-100 dark:border-neutral-800 shadow-sm">
             <h4 className="font-bold text-gray-900 dark:text-white mb-4">{platform}</h4>
             <div className="space-y-3">
-              {issues.map((issue, index) => (
+              {platformIssues.map((issue: any, index: number) => (
                 <div key={index} className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>

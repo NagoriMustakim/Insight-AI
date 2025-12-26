@@ -1,9 +1,10 @@
 "use client"
 
-import { comparisonData } from "@/data/comparison"
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts"
 
-export function SentimentDistributionChart() {
+export function SentimentDistributionChart({ data }: { data: any }) {
+  if (!data || !data.sentimentDistribution || data.sentimentDistribution.length === 0) return null;
+  const { sentimentDistribution } = data;
   return (
     <div className="bg-white dark:bg-neutral-900 p-6 rounded-2xl border border-gray-100 dark:border-neutral-800 shadow-sm mb-8">
       <div className="mb-6">
@@ -13,7 +14,7 @@ export function SentimentDistributionChart() {
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
-              data={comparisonData.sentimentDistribution}
+              data={sentimentDistribution}
               cx="50%"
               cy="50%"
               innerRadius={80}
@@ -21,7 +22,7 @@ export function SentimentDistributionChart() {
               paddingAngle={2}
               dataKey="value"
             >
-              {comparisonData.sentimentDistribution.map((entry, index) => (
+              {sentimentDistribution.map((entry: any, index: number) => (
                 <Cell key={`cell-${index}`} fill={entry.fill} strokeWidth={0} />
               ))}
             </Pie>

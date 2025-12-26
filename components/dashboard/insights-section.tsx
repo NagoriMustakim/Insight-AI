@@ -1,10 +1,10 @@
 "use client"
 
-import { overviewData } from "@/data/overview"
 import { CheckCircle2, AlertCircle, TrendingDown } from "lucide-react"
 
-export function InsightsSection() {
-  const { insights } = overviewData
+export function InsightsSection({ data }: { data: any }) {
+  if (!data || !data.insights) return null;
+  const { insights } = data;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

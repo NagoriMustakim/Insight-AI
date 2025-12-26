@@ -26,11 +26,102 @@ import { ReviewsView } from "@/components/reviews/reviews-view"
 import { ChatView } from "@/components/chat/chat-view"
 import { ProductIntelligenceView } from "@/components/product-intelligence/product-intelligence-view"
 
+import { overviewData as initialOverviewData } from "@/data/overview"
+import { comparisonData as initialComparisonData } from "@/data/comparison"
+import { insightsData as initialInsightsData } from "@/data/insights"
+
 export default function Home() {
-  const [activeView, setActiveView] = React.useState("overview")
+  const [activeView, setActiveView] = React.useState("product-details")
+
+  const [productUrl, setProductUrl] = React.useState("")
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [analysisResult, setAnalysisResult] = React.useState<any>(null);
+  const [error, setError] = React.useState<string | null>(null);
+
+  const handleUrlScrape = async () => {
+    const analyzedUrls = JSON.parse(localStorage.getItem('analyzedUrls') || '[]');
+    if (analyzedUrls.includes(productUrl)) {
+      setError('This product has already been analyzed.');
+      return;
+    }
+    if (!productUrl) {
+        setError("Please enter a product URL.");
+        return;
+    }
+    setIsLoading(true);
+    setError(null);
+    setAnalysisResult(null);
+
+    try {
+      const response = await fetch('/api/scrape', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productUrl }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Something went wrong');
+      }
+
+      setAnalysisResult(data);
+
+      // Update the data files on the backend
+      await fetch('/api/update-data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      // Add the URL to the list of analyzed URLs
+      const analyzedUrls = JSON.parse(localStorage.getItem('analyzedUrls') || '[]');
+      analyzedUrls.push(productUrl);
+      localStorage.setItem('analyzedUrls', JSON.stringify(analyzedUrls));
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const renderContent = () => {
     switch (activeView) {
+      case "product-details":
+        return (
+          <>
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Product Details</h2>
+              <p className="text-gray-500 dark:text-gray-400">Enter an Amazon product URL to analyze customer reviews.</p>
+            </div>
+            <div className="flex gap-2">
+                <input
+                    type="text"
+                    value={productUrl}
+                    onChange={(e) => setProductUrl(e.target.value)}
+                    placeholder="Enter Amazon Product URL"
+                    className="flex-grow px-4 py-2 bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded-lg text-sm"
+                />
+                <button
+                    onClick={handleUrlScrape}
+                    className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors"
+                >
+                    {isLoading ? 'Analyzing...' : 'Analyze Product'}
+                </button>
+            </div>
+            {error && <p className="text-red-500 mt-4">{error}</p>}
+            {analysisResult && (
+              <div className="mt-8 p-4 bg-gray-100 dark:bg-neutral-800 rounded-lg">
+                <h3 className="text-lg font-bold">Analysis Result</h3>
+                <pre className="text-sm">{JSON.stringify(analysisResult, null, 2)}</pre>
+              </div>
+            )}
+          </>
+        )
       case "overview":
         return (
           <>
@@ -49,10 +140,10 @@ export default function Home() {
               </div>
             </div>
 
-            <StatsCards />
-            <SentimentChart />
-            <PlatformScorecard />
-            <InsightsSection />
+            <StatsCards data={analysisResult?.overviewData ?? initialOverviewData} />
+            <SentimentChart data={analysisResult?.overviewData ?? initialOverviewData} />
+            <PlatformScorecard data={analysisResult?.overviewData ?? initialOverviewData} />
+            <InsightsSection data={analysisResult?.overviewData ?? initialOverviewData} />
           </>
         )
       case "comparison":
@@ -63,10 +154,10 @@ export default function Home() {
               <p className="text-gray-500 dark:text-gray-400">Compare performance metrics across different channels.</p>
             </div>
             
-            <ComparisonOverviewChart />
-            <PlatformDetailsTable />
-            <IssueBreakdown />
-            <SentimentDistributionChart />
+            <ComparisonOverviewChart data={analysisResult?.comparisonData ?? initialComparisonData} />
+            <PlatformDetailsTable data={analysisResult?.comparisonData ?? initialComparisonData} />
+            <IssueBreakdown data={analysisResult?.comparisonData ?? initialComparisonData} />
+            <SentimentDistributionChart data={analysisResult?.comparisonData ?? initialComparisonData} />
           </>
         )
       case "insights":
@@ -77,10 +168,10 @@ export default function Home() {
               <p className="text-gray-500 dark:text-gray-400">Deep dive into customer sentiment and emerging topics.</p>
             </div>
             
-            <StrengthsSection />
-            <WeaknessesSection />
-            <CriticalIssuesSection />
-            <ThemesCloud />
+            <StrengthsSection data={analysisResult?.insightsData ?? initialInsightsData} />
+            <WeaknessesSection data={analysisResult?.insightsData ?? initialInsightsData} />
+            <CriticalIssuesSection data={analysisResult?.insightsData ?? initialInsightsData} />
+            <ThemesCloud data={analysisResult?.insightsData ?? initialInsightsData} />
           </>
         )
       case "roadmap":

@@ -11,12 +11,14 @@ import {
   Menu,
   X,
   Sparkles,
-  Brain
+  Brain,
+  ClipboardPaste
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SettingsModal } from "./settings-modal"
 
 const navItems = [
+  { name: "Product Details", id: "product-details", icon: ClipboardPaste },
   { name: "Overview", id: "overview", icon: LayoutDashboard },
   { name: "Platform Comparison", id: "comparison", icon: BarChart2 },
   { name: "Insights & Themes", id: "insights", icon: Lightbulb },

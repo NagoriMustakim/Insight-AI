@@ -1,9 +1,10 @@
 "use client"
 
-import { insightsData } from "@/data/insights"
 import { XCircle } from "lucide-react"
 
-export function CriticalIssuesSection() {
+export function CriticalIssuesSection({ data }: { data: any }) {
+  if (!data || !data.criticalIssues || data.criticalIssues.length === 0) return null;
+  const { criticalIssues } = data;
   return (
     <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-gray-100 dark:border-neutral-800 shadow-sm p-6 mb-6">
       <div className="flex items-center gap-2 mb-6">
@@ -11,7 +12,7 @@ export function CriticalIssuesSection() {
         <h3 className="text-lg font-bold text-gray-900 dark:text-white">Critical Issues (Immediate Action Required)</h3>
       </div>
       <div className="space-y-4">
-        {insightsData.criticalIssues.map((item) => (
+        {criticalIssues.map((item: any) => (
           <div key={item.rank} className="flex items-center justify-between p-4 bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/20 rounded-xl">
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -24,7 +25,7 @@ export function CriticalIssuesSection() {
               <div className="flex items-center gap-2">
                 <span className="text-xs text-gray-400 dark:text-gray-500">Affected platforms:</span>
                 <div className="flex gap-2">
-                  {item.platforms.map((platform) => (
+                  {item.platforms.map((platform: any) => (
                     <span key={platform} className="text-xs font-medium text-gray-600 dark:text-gray-300 bg-white dark:bg-neutral-800 px-2 py-0.5 rounded border border-gray-100 dark:border-neutral-700">
                       {platform}
                     </span>

@@ -1,9 +1,16 @@
 "use client"
 
-import { overviewData } from "@/data/overview"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts"
 
-export function SentimentChart() {
+export function SentimentChart({ data }: { data: any }) {
+  if (!data || !data.sentimentTrend || data.sentimentTrend.length === 0) {
+    return (
+      <div className="bg-white dark:bg-neutral-900 p-6 rounded-2xl border border-gray-100 dark:border-neutral-800 shadow-sm mb-8">
+        <h3 className="text-lg font-bold text-gray-900 dark:text-white">Sentiment Trend (6 Months)</h3>
+        <p className="text-gray-500 dark:text-gray-400 mt-4">No sentiment trend data available. Analyze a product to see this chart.</p>
+      </div>
+    );
+  }
   return (
     <div className="bg-white dark:bg-neutral-900 p-6 rounded-2xl border border-gray-100 dark:border-neutral-800 shadow-sm mb-8">
       <div className="mb-6">
@@ -12,7 +19,7 @@ export function SentimentChart() {
       <div className="h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
-            data={overviewData.sentimentTrend}
+            data={data.sentimentTrend}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" className="dark:stroke-neutral-800" />

@@ -1,9 +1,23 @@
 "use client"
 
-import { comparisonData } from "@/data/comparison"
 import { Star, TrendingUp, TrendingDown, ThumbsUp, ThumbsDown, Minus } from "lucide-react"
 
-export function PlatformDetailsTable() {
+interface PlatformDetails {
+  platform: string;
+  reviews: number;
+  sentiment: number;
+  rating: number;
+  distribution: {
+    positive: number;
+    neutral: number;
+    negative: number;
+  };
+  trend: number;
+}
+
+export function PlatformDetailsTable({ data }: { data: any }) {
+  if (!data || !data.details || data.details.length === 0) return null;
+  const { details }: { details: PlatformDetails[] } = data;
   return (
     <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-gray-100 dark:border-neutral-800 shadow-sm mb-8 overflow-hidden">
       <div className="overflow-x-auto">
@@ -19,7 +33,7 @@ export function PlatformDetailsTable() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 dark:divide-neutral-800">
-            {comparisonData.details.map((platform) => (
+            {details.map((platform: PlatformDetails) => (
               <tr key={platform.platform} className="hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors">
                 <td className="py-4 px-6 text-sm font-bold text-gray-900 dark:text-white">{platform.platform}</td>
                 <td className="py-4 px-6 text-sm text-gray-600 dark:text-gray-300">{platform.reviews.toLocaleString()}</td>

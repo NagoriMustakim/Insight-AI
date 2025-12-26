@@ -1,228 +1,208 @@
 export const productIntelligenceData = {
-    // Feature Request Clustering Data
-    featureClusters: [
-        {
-            id: 1,
-            theme: "Battery & Power Management",
-            requestCount: 2847,
-            priorityScore: 94,
-            revenueImpact: 125000,
-            sentimentDrop: 18,
-            topRequests: [
-                "Longer battery life between charges",
-                "Fast charging support",
-                "Battery health indicator"
-            ],
-            trend: "rising",
-            platforms: ["Amazon", "Best Buy", "Website"],
-        },
-        {
-            id: 2,
-            theme: "Mobile App Experience",
-            requestCount: 2156,
-            priorityScore: 89,
-            revenueImpact: 98000,
-            sentimentDrop: 15,
-            topRequests: [
-                "iOS 17 compatibility fix",
-                "Better notification sync",
-                "Faster app loading"
-            ],
-            trend: "rising",
-            platforms: ["Amazon", "Website"],
-        },
-        {
-            id: 3,
-            theme: "Bluetooth Connectivity",
-            requestCount: 1892,
-            priorityScore: 85,
-            revenueImpact: 87000,
-            sentimentDrop: 22,
-            topRequests: [
-                "Stable Bluetooth connection",
-                "Multiple device pairing",
-                "Auto-reconnect feature"
-            ],
-            trend: "stable",
-            platforms: ["Amazon", "Walmart", "Best Buy"],
-        },
-        {
-            id: 4,
-            theme: "Health Monitoring Accuracy",
-            requestCount: 1654,
-            priorityScore: 78,
-            revenueImpact: 72000,
-            sentimentDrop: 12,
-            topRequests: [
-                "More accurate heart rate",
-                "Sleep tracking improvements",
-                "SpO2 accuracy"
-            ],
-            trend: "stable",
-            platforms: ["Amazon", "Website"],
-        },
-        {
-            id: 5,
-            theme: "UI/UX Improvements",
-            requestCount: 1243,
-            priorityScore: 72,
-            revenueImpact: 45000,
-            sentimentDrop: 8,
-            topRequests: [
-                "Larger font options",
-                "Customizable watch faces",
-                "Simplified menu navigation"
-            ],
-            trend: "declining",
-            platforms: ["Best Buy", "Website"],
-        },
-        {
-            id: 6,
-            theme: "Third-party Integrations",
-            requestCount: 987,
-            priorityScore: 65,
-            revenueImpact: 38000,
-            sentimentDrop: 6,
-            topRequests: [
-                "Strava integration",
-                "Google Fit sync",
-                "MyFitnessPal support"
-            ],
-            trend: "rising",
-            platforms: ["Amazon", "Website"],
-        },
-    ],
-
-    // What-If Simulator Data
-    whatIfScenarios: [
-        {
-            id: 1,
-            issue: "Battery Drain Issues",
-            currentSentiment: 62,
-            predictedSentiment: 78,
-            improvementPercent: 16,
-            revenueRecovery: 156000,
-            churnPrevented: 2340,
-            implementationEffort: "High",
-            timeToFix: "8-12 weeks",
-            affectedUsers: 34500,
-            confidence: 87,
-        },
-        {
-            id: 2,
-            issue: "iOS App Crashes",
-            currentSentiment: 58,
-            predictedSentiment: 71,
-            improvementPercent: 13,
-            revenueRecovery: 98000,
-            churnPrevented: 1560,
-            implementationEffort: "Medium",
-            timeToFix: "4-6 weeks",
-            affectedUsers: 28900,
-            confidence: 92,
-        },
-        {
-            id: 3,
-            issue: "Bluetooth Disconnects",
-            currentSentiment: 54,
-            predictedSentiment: 66,
-            improvementPercent: 12,
-            revenueRecovery: 87000,
-            churnPrevented: 1890,
-            implementationEffort: "High",
-            timeToFix: "6-10 weeks",
-            affectedUsers: 31200,
-            confidence: 78,
-        },
-        {
-            id: 4,
-            issue: "Heart Rate Inaccuracy",
-            currentSentiment: 68,
-            predictedSentiment: 76,
-            improvementPercent: 8,
-            revenueRecovery: 54000,
-            churnPrevented: 890,
-            implementationEffort: "Medium",
-            timeToFix: "4-8 weeks",
-            affectedUsers: 18700,
-            confidence: 85,
-        },
-        {
-            id: 5,
-            issue: "Slow App Performance",
-            currentSentiment: 71,
-            predictedSentiment: 79,
-            improvementPercent: 8,
-            revenueRecovery: 42000,
-            churnPrevented: 720,
-            implementationEffort: "Low",
-            timeToFix: "2-4 weeks",
-            affectedUsers: 15400,
-            confidence: 94,
-        },
-    ],
-
-    // Launch Risk Predictor Data
-    upcomingVersion: {
-        version: "v3.2.0",
-        plannedRelease: "Dec 15, 2025",
-        overallRiskScore: 67,
-        confidence: 82,
+  "featureClusters": [
+    {
+      "id": 1,
+      "theme": "Quality",
+      "requestCount": 28,
+      "priorityScore": 69,
+      "revenueImpact": 6000,
+      "sentimentDrop": 21,
+      "topRequests": [
+        "Customers find these headphones to be of excellent quality, particularly suitable for children."
+      ],
+      "trend": "stable",
+      "platforms": [
+        "Amazon"
+      ]
     },
-    riskCategories: [
-        {
-            category: "Performance Impact",
-            riskLevel: 78,
-            severity: "high",
-            prediction: "Battery usage may increase by 15% based on new feature additions",
-            historicalPattern: "v2.8 and v3.0 both had post-launch battery complaints",
-            mitigation: "Optimize background processes before launch",
-            affectedUserPercent: 45,
-        },
-        {
-            category: "Compatibility Issues",
-            riskLevel: 65,
-            severity: "medium",
-            prediction: "iOS 18 users may experience sync issues with new API",
-            historicalPattern: "Major iOS releases consistently cause 2-week spike in complaints",
-            mitigation: "Extensive beta testing on iOS 18 devices recommended",
-            affectedUserPercent: 28,
-        },
-        {
-            category: "UX Confusion",
-            riskLevel: 52,
-            severity: "medium",
-            prediction: "New navigation structure may confuse existing users temporarily",
-            historicalPattern: "UI changes typically see 1-week adjustment period",
-            mitigation: "Include in-app tutorial for updated navigation",
-            affectedUserPercent: 35,
-        },
-        {
-            category: "Feature Bugs",
-            riskLevel: 41,
-            severity: "low",
-            prediction: "New sleep tracking feature may have edge cases",
-            historicalPattern: "New features average 12 bug reports in first week",
-            mitigation: "Staged rollout recommended (10% → 50% → 100%)",
-            affectedUserPercent: 15,
-        },
-    ],
-    historicalReleases: [
-        { version: "v3.1.0", date: "Oct 2025", riskPredicted: 58, actualIssues: 62, backlashScore: 24 },
-        { version: "v3.0.0", date: "Aug 2025", riskPredicted: 72, actualIssues: 78, backlashScore: 45 },
-        { version: "v2.9.0", date: "Jun 2025", riskPredicted: 45, actualIssues: 41, backlashScore: 12 },
-        { version: "v2.8.0", date: "Apr 2025", riskPredicted: 68, actualIssues: 71, backlashScore: 38 },
-        { version: "v2.7.0", date: "Feb 2025", riskPredicted: 35, actualIssues: 32, backlashScore: 8 },
-        { version: "v2.6.0", date: "Dec 2024", riskPredicted: 52, actualIssues: 48, backlashScore: 18 },
-    ],
-
-    // Summary Stats
-    summaryStats: {
-        totalFeatureRequests: 10779,
-        clustersIdentified: 6,
-        avgPriorityScore: 80.5,
-        totalRevenueAtRisk: 465000,
-        modelAccuracy: 89,
-        lastUpdated: "2 hours ago",
+    {
+      "id": 2,
+      "theme": "Sound quality",
+      "requestCount": 16,
+      "priorityScore": 68,
+      "revenueImpact": 3000,
+      "sentimentDrop": 19,
+      "topRequests": [
+        "Customers like the sound quality of these headphones."
+      ],
+      "trend": "declining",
+      "platforms": [
+        "Amazon"
+      ]
     },
+    {
+      "id": 3,
+      "theme": "Value for money",
+      "requestCount": 9,
+      "priorityScore": 69,
+      "revenueImpact": 2000,
+      "sentimentDrop": 22,
+      "topRequests": [
+        "Customers find the headphones worth their price."
+      ],
+      "trend": "stable",
+      "platforms": [
+        "Amazon"
+      ]
+    },
+    {
+      "id": 4,
+      "theme": "Battery life",
+      "requestCount": 7,
+      "priorityScore": 71,
+      "revenueImpact": 2000,
+      "sentimentDrop": 29,
+      "topRequests": [
+        "Customers are satisfied with the headphones' battery life, with one customer noting that it charges very quickly."
+      ],
+      "trend": "stable",
+      "platforms": [
+        "Amazon"
+      ]
+    },
+    {
+      "id": 5,
+      "theme": "Design",
+      "requestCount": 7,
+      "priorityScore": 60,
+      "revenueImpact": 0,
+      "sentimentDrop": 0,
+      "topRequests": [
+        "Customers like the design of these headphones, finding them super cool looking, with one customer specifically mentioning that the lights are cute."
+      ],
+      "trend": "declining",
+      "platforms": [
+        "Amazon"
+      ]
+    },
+    {
+      "id": 6,
+      "theme": "Comfort",
+      "requestCount": 6,
+      "priorityScore": 67,
+      "revenueImpact": 1000,
+      "sentimentDrop": 17,
+      "topRequests": [
+        "Customers find the headphones comfortable."
+      ],
+      "trend": "declining",
+      "platforms": [
+        "Amazon"
+      ]
+    },
+    {
+      "id": 7,
+      "theme": "Kids-friendly",
+      "requestCount": 5,
+      "priorityScore": 68,
+      "revenueImpact": 1000,
+      "sentimentDrop": 20,
+      "topRequests": [
+        "Customers find these headphones suitable for children, with one mentioning they are the best kids-friendly headphones."
+      ],
+      "trend": "declining",
+      "platforms": [
+        "Amazon"
+      ]
+    },
+    {
+      "id": 8,
+      "theme": "Functionality",
+      "requestCount": 7,
+      "priorityScore": 89,
+      "revenueImpact": 5000,
+      "sentimentDrop": 71,
+      "topRequests": [
+        "Customers report issues with the headphones' functionality, including buttons not working and frequent disconnections."
+      ],
+      "trend": "rising",
+      "platforms": [
+        "Amazon"
+      ]
+    }
+  ],
+  "whatIfScenarios": [
+    {
+      "id": 1,
+      "issue": "Functionality",
+      "currentSentiment": 82,
+      "predictedSentiment": 87,
+      "improvementPercent": 5,
+      "revenueRecovery": 2500,
+      "churnPrevented": 50,
+      "implementationEffort": "High",
+      "timeToFix": "6-10 weeks",
+      "affectedUsers": 50,
+      "confidence": 80
+    }
+  ],
+  "upcomingVersion": {
+    "version": "v1.0.0",
+    "plannedRelease": "Next 2-3 months",
+    "overallRiskScore": 20,
+    "confidence": 80
+  },
+  "riskCategories": [
+    {
+      "category": "Functionality",
+      "riskLevel": 60,
+      "severity": "medium",
+      "prediction": "Functionality is a key driver of negative sentiment in recent reviews.",
+      "historicalPattern": "Derived from recent Amazon customer feedback.",
+      "mitigation": "Prioritize this issue in the upcoming release roadmap.",
+      "affectedUserPercent": 1
+    }
+  ],
+  "historicalReleases": [
+    {
+      "version": "v1.0.0",
+      "date": "Release 1",
+      "riskPredicted": 33,
+      "actualIssues": 27,
+      "backlashScore": 30
+    },
+    {
+      "version": "v2.0.0",
+      "date": "Release 2",
+      "riskPredicted": 30,
+      "actualIssues": 26,
+      "backlashScore": 27
+    },
+    {
+      "version": "v3.0.0",
+      "date": "Release 3",
+      "riskPredicted": 27,
+      "actualIssues": 25,
+      "backlashScore": 24
+    },
+    {
+      "version": "v4.0.0",
+      "date": "Release 4",
+      "riskPredicted": 24,
+      "actualIssues": 24,
+      "backlashScore": 21
+    },
+    {
+      "version": "v5.0.0",
+      "date": "Release 5",
+      "riskPredicted": 21,
+      "actualIssues": 23,
+      "backlashScore": 18
+    },
+    {
+      "version": "v6.0.0",
+      "date": "Release 6",
+      "riskPredicted": 20,
+      "actualIssues": 24,
+      "backlashScore": 15
+    }
+  ],
+  "summaryStats": {
+    "totalFeatureRequests": 85,
+    "clustersIdentified": 8,
+    "avgPriorityScore": 70.1,
+    "totalRevenueAtRisk": 20000,
+    "modelAccuracy": 90,
+    "lastUpdated": "Just now"
+  }
 };

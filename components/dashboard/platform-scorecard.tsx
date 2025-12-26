@@ -1,16 +1,28 @@
 "use client"
 
-import { overviewData } from "@/data/overview"
 import { Star } from "lucide-react"
 
-export function PlatformScorecard() {
-  const { platformPerformance } = overviewData
+interface PlatformPerformance {
+  name: string;
+  score: number;
+  reviews: number;
+  rating: number;
+  sentiment: {
+    positive: number;
+    neutral: number;
+    negative: number;
+  };
+}
+
+export function PlatformScorecard({ data }: { data: any }) {
+  if (!data || !data.platformPerformance || data.platformPerformance.length === 0) return null;
+  const { platformPerformance }: { platformPerformance: PlatformPerformance[] } = data;
 
   return (
     <div className="mb-8">
       <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Platform Performance Scorecard</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {platformPerformance.map((platform) => (
+        {platformPerformance.map((platform: PlatformPerformance) => (
           <div key={platform.name} className="bg-white dark:bg-neutral-900 p-6 rounded-2xl border border-gray-100 dark:border-neutral-800 shadow-sm">
             <div className="flex justify-between items-start mb-4">
               <h4 className="font-bold text-gray-900 dark:text-white">{platform.name}</h4>
